@@ -8,7 +8,7 @@ $data = $habitacionC->GetHabitacioId();
 
 <section class="Correo py-4 text-center parrallax">
     <div class="container">
-        <div class="text-center my-3">
+        <div class="text-center mt-3">
             <h2><?php echo $data->categoria; ?></h2>
         </div>
     </div>

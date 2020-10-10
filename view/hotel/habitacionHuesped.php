@@ -7,7 +7,7 @@ var_dump($a);
 <section class="Correo py-4 text-center parrallax">
     <div class="container">
         <div class="text-center my-4">
-            <h2>Habitacion Matrimonial</h2>
+            <h2>Habitacion</h2>
         </div>
     </div>
 </section>
