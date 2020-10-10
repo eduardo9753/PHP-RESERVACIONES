@@ -1,0 +1,254 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+:root{
+    --colorBlack : #000000;
+    --colorPlomo :  #f5f5f5;
+    --colorNaranja :  #ff5101;
+    --colorRojo :  #e01414;
+    --colorBlanco :  #ffffff;
+    --colorAmarillo :  #ffe601;
+    --colorNegroTransparente :  rgba(0,0,0,0.55);
+}
+video{
+    width: 100%;
+}
+ul{
+    list-style: none;
+}
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: middle;
+}
+
+
+/*Header*/
+.header{
+    position: fixed;
+    width: 100%;
+    z-index: 900;
+}
+
+
+/*nav bar*/
+.navbar{
+    -webkit-box-shadow: 0px 7px 11px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 7px 11px -4px rgba(0,0,0,0.75);
+    box-shadow: 0px 7px 11px -4px rgba(0,0,0,0.75);
+    background-color: var(--colorRojo);
+ /*   padding: 20px 20px;*/
+}
+.navbar .navbar-nav .nav-item{
+    padding: 0rem 1.5rem 0rem 1.5rem;
+}
+.navbar .navbar-nav .nav-link{
+ color:var(--colorPlomo);
+}
+.navbar .navbar-nav .nav-link:hover{
+    color:var(--colorAmarillo);
+}
+/* .navbar{
+ background-color: var(--colorRojo);
+ padding:20px 0px 20px 0px;
+} */
+
+.My-btn{
+    display: inline-block;
+    background-color: var(--colorRojo);
+    color: var(--colorPlomo);
+    border-radius: 10px;
+    padding:15px 45px;
+    text-decoration:none;
+
+    transition: all .3s ease-in-out;
+}
+.My-btn:hover{
+    text-decoration: none;
+    color: var(--colorPlomo);
+    background-color: var(--colorNaranja);
+}
+
+/*slider de imageles*/
+.carousel-inner .carousel-item img{
+  height: 100vh;
+}
+
+@media(max-width: 500px){
+    .carousel-inner .carousel-item img{
+        height: 75vh;
+      }
+}
+
+/*estilo para el video*/
+.descript-empresa h1{
+    color: var(--colorNaranja);
+}
+
+.My-Video{
+    position: relative;
+    overflow: hidden;
+}
+.My-Video .descript-Video{
+  position: absolute;
+  top: 0;
+  background-color: rgba(0,0,0,0.75);
+  width: 50%;
+  height: 98%;
+}
+@media(max-width:600px){
+    .My-Video .descript-Video{
+        height: 99%;
+    }  
+}
+
+.My-Video .descript-Video .lead{
+    color: #ffffff;
+    margin-top: 45%;
+    padding: 1rem;
+}
+@media(max-width:600px){
+    .My-Video .descript-Video .lead{
+        margin-top: 35px;
+        padding: 0rem;
+    }  
+}
+
+
+
+/*Servicios*/
+.Servicios .title-servi{
+    border-left: 3px solid var(--colorNaranja);
+    padding-left: 20px;
+}
+@media(max-width:600px){
+    .Servicios .title-servi{
+        font-size: 30px;
+    }
+}
+
+
+.servicio{
+  position: relative;
+  margin-bottom: 30px;
+}
+.img-descript{
+  position: absolute;
+  top: 0;
+  color: #ffffff;
+  width: 60%;
+  height: 100%;
+  text-align: center;
+  background-color: var(--colorNegroTransparente);
+}
+@media(max-width:600px){
+    .img-descript{
+        height: 99%;
+    }
+}
+
+.img-descript .lead{
+    margin-top: 60%;
+    color: #fffb00;
+}
+.img-servi {
+    overflow: hidden;
+}
+.img-servi img{
+    transition: all .2s ease-in-out;
+}
+.img-servi img:hover{
+    transform: scale(1.1);
+}
+
+/*Habitaciones*/
+.Habiaciones{
+    background-color: var(--colorBlack);
+}
+.Habiaciones .title-habitacion{
+    border-left: 2px solid orangered;
+    padding-left: 20px;
+    color: #ffffff;
+}
+.habitacion .descript-habitacion{
+    background-color: #ffffff;
+}
+.habitacion ul{
+    list-style: none;
+}
+.habitacion span{
+    color: var(--colorRojo);
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/*Testimoniales*/
+.Testimoniales .title-testimonio{
+    border-left: 2px solid orangered;
+    padding-left: 20px;
+}
+.Testimoniales .testimonial img{
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+}
+.Testimoniales .testimonial{
+    text-align: center;
+}
+
+
+/*Estilos Mapa*/
+.Correo{
+    background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)),url(../img/FondoCorreo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.Correo h2{
+    color: var(--colorBlanco);
+}
+.Mapa .myMapa{
+   width: 100%;
+   height: 350px; 
+}
+.form-group label{
+    color: var(--colorAmarillo);
+}
+
+/*Footer*/
+.Footer{
+   background-color: var(--colorBlack);
+}
+.Footer .enlace img{
+    width: 34px;
+    height: 34px;
+}
+
+/*Pie*/
+.Pie{
+    background-color: var(--colorRojo);
+    color: var(--colorBlanco);
+}
+
+
+
+/*ESTILOS PARA PAGINA HABITACION*/
+.Formulario{
+    background-color: var(--colorBlack);
+    color: var(--colorBlanco);
+}
+.Formulario .precio-noche{
+   border: 1px solid yellow;
+   padding: 5px;
+}
+.parrallax{
+    height: 45vh;
+}
+.parrallax h2{
+    margin-top: 120px;
+}
