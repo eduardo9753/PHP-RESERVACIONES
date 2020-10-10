@@ -3,7 +3,7 @@ include_once('./view/templates/menu.php');
 
 $habitacionC = new HabitacionControl();
 $data = $habitacionC->ViewHabitacionInfo();
-$a=$habitacionC->RegisterReservacion();
+$a = $habitacionC->RegisterReservacion();
 //var_dump($a);
 //var_dump($data);
 ?>
@@ -72,17 +72,17 @@ $a=$habitacionC->RegisterReservacion();
                         </div>
 
                         <div>
-                            <label for="" class="my-3">Codigo Habitacion</label>
-                            <input type="text" value="<?php echo $data->Tipohabitacion_idtipohabitacion;?>" class="form-control" name="txtidhabitacionforanea" hidden>
-                        </div>
-
-                        <div>
-                            <label for="" class="my-3">Codigo Cliente</label>
-                            <input type="text" value="<?php ;?>" class="form-control" name="txtidclienteforanea" hidden>
-                        </div>
-
-                        <div>
                             <input type="submit" class="btn btn-danger my-4 btn-block" value="Reservar Habitacion" name="btnReseraInfoHabi">
+                        </div>
+
+                        <div>
+                            <label for="" class="my-3"></label>
+                            <input type="text" value="<?php echo $data->Tipohabitacion_idtipohabitacion; ?>" class="form-control" name="txtidhabitacionforanea" hidden>
+                        </div>
+
+                        <div>
+                            <label for="" class="my-3"></label>
+                            <input type="text" value="<?php; ?>" class="form-control" name="txtidclienteforanea" hidden>
                         </div>
                     </div>
                 </div>
