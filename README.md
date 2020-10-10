@@ -144,12 +144,15 @@ SELECT c.idclienteDNI,c.nombre,c.email,
        WHERE c.idclienteDNI = '12346';
 ```
 ## Imagenes
-- 1
-![jeans1](https://user-images.githubusercontent.com/68178186/91236658-29777e00-e6fe-11ea-811b-da884a4a410d.PNG)
-- 2
-![jeans2](https://user-images.githubusercontent.com/68178186/91236716-5a57b300-e6fe-11ea-90ee-7f2e1dda46cd.PNG)
-- 3
-![jeans3](https://user-images.githubusercontent.com/68178186/91236800-90953280-e6fe-11ea-8238-d9712e2a7622.PNG)
+- Incio
+![HOMEHOTEL](https://user-images.githubusercontent.com/68178186/95648724-362e1680-0a9f-11eb-841a-a939c5ca24ae.PNG)
+- Habitaciones
+![HABITACION](https://user-images.githubusercontent.com/68178186/95648729-39c19d80-0a9f-11eb-8821-0d63bfd9d351.PNG)
+- Habitacion
+![cuarto](https://user-images.githubusercontent.com/68178186/95648733-3b8b6100-0a9f-11eb-8a8a-23af9b3e39c8.PNG)
+- Registrar Reserva
+![registros](https://user-images.githubusercontent.com/68178186/95648734-3dedbb00-0a9f-11eb-8b84-c12359227d2c.PNG)
+
 
 ## Pagina de Referencia
 - [Pagina de Referencia](https://practical-johnson-b72bbf.netlify.app/index.html "Pagina de Referencia")
