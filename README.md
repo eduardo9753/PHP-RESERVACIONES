@@ -152,7 +152,3 @@ SELECT c.idclienteDNI,c.nombre,c.email,
 ![cuarto](https://user-images.githubusercontent.com/68178186/95648733-3b8b6100-0a9f-11eb-8a8a-23af9b3e39c8.PNG)
 - Registrar Reserva
 ![registros](https://user-images.githubusercontent.com/68178186/95648734-3dedbb00-0a9f-11eb-8b84-c12359227d2c.PNG)
-
-
-## Pagina de Referencia
-- [Pagina de Referencia](https://practical-johnson-b72bbf.netlify.app/index.html "Pagina de Referencia")
