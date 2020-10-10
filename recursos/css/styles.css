@@ -246,6 +246,10 @@ img{
    border: 1px solid yellow;
    padding: 5px;
 }
+.Formulario .precio{
+    color: yellow;
+    font-size: 35px;
+}
 .parrallax{
     height: 45vh;
 }
