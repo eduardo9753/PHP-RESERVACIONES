@@ -1,117 +1,147 @@
-# DEMO WEB Pagina de Venta de Jeans
+# DEMO WEB Pagina Hotelera de Reservaciones
 ## Arquitectura MVC
 - Controller : intermediario entre el Modelo y la Vista, gestionando el flujo de información entre ellos y redireccionando las vistas o interfaces al usuario.
 - Modelo : contiene una representación de los datos que maneja el sistema, su lógica de negocio.
 - Vista : interfaz de usuario, que compone la información que se envía al cliente y los mecanismos interacción con éste.
 ## Base de Datos
 ```sql
-sql
-CREATE DATABASE IF NOT EXISTS `LetsyRopa`
-DEFAULT CHARACTER SET utf8;
-use `LetsyRopa`;
-
-
+create database hotel DEFAULT CHARACTER SET utf8;
 SET default_storage_engine = INNODB;
 
-CREATE TABLE `LetsyRopa`.`usuario`(
-  `idusuario`  INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45),
-  `fechaNacimiento` DATE,
-  `nombreUser` VARCHAR(45) NOT NULL,
-  `passUser` VARCHAR(45),
-   PRIMARY KEY(`idusuario`),
-   UNIQUE KEY (`idusuario`)
-);
+use hotel;
+
+#TABLE TIPOHABITACION
+create table Tipohabitacion(
+ idtipohabitacion tinyint auto_increment not null,
+ tipocama varchar(100) not null,
+ categoria varchar(40) not null,
+ imagenPrincipal blob not null,
+ imagen1 blob not null,
+ imagen2 blob not null,
+ imagen3 blob not null,
  
-
-CREATE TABLE `LetsyRopa`.`recados`(
-  `idrecados`  INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45),
-  `celular` CHAR(9) NOT NULL,
-  `recado` varchar(280),
-   PRIMARY KEY(`idrecados`),
-   UNIQUE KEY (`idrecados`)
-);
-
-#tabla marca
-CREATE TABLE `LetsyRopa`.`brands`(
- `idbrans` INT UNSIGNED NOT NULL AUTO_INCREMENT,
- `name` VARCHAR(250) NOT NULL,
-  PRIMARY KEY(`idbrans`),
-  UNIQUE KEY (`idbrans`)
-);
+ unique key `idtipohabitacion`(idtipohabitacion),
+ primary key (idtipohabitacion)
+)ENGINE=InnoDB default charset=utf8mb4 collate=utf8mb4_0900_ai_ci;
 
 
-#tabla categorias
-CREATE TABLE `LetsyRopa`.`categoria`(
-  `idcategoria` INT UNSIGNED NOT NULL auto_increment,
-  `name` VARCHAR(100) NOT NULL,
-  PRIMARY KEY(`idcategoria`), 
-  UNIQUE KEY (`idcategoria`)
-);
+#TABLE HABITACION
+create table Habitacion(
+numeroHabitacion tinyint auto_increment not null,
+costodia double,
+area varchar(10),
+numPersonas tinyint,
+#foreing key
+Tipohabitacion_idtipohabitacion tinyint not null,
+FOREIGN KEY (Tipohabitacion_idtipohabitacion) REFERENCES `Tipohabitacion`(idtipohabitacion) ON DELETE NO ACTION ON UPDATE NO ACTION,
+
+unique key `numeroHabitacion`(numeroHabitacion),
+primary key (numeroHabitacion)
+)ENGINE=InnoDB default charset=utf8mb4 collate=utf8mb4_0900_ai_ci;
+
+
+#TABLE RESERVACION
+create table reservacion(
+ idreservacion tinyint auto_increment not null,
+ FechaEntrada date not null,
+ FechaSalida date not null,
  
-
-#table product
-CREATE TABLE `letsyropa`.`productos`(
- `id_producto` INT UNSIGNED NOT NULL AUTO_INCREMENT,
- `nameproduct` VARCHAR(60) NOT NULL,
- `imagen` BLOB NOT NULL,
- `precio` DOUBLE NOT NULL ,
- `brands_idbrans` INT UNSIGNED NOT NULL,
- `categoria_idcategoria` INT UNSIGNED NOT NULL,
- `description` TEXT(600) NOT NULL,
-  PRIMARY KEY (`id_producto`),
-  #index de las llaves foraneas
-  INDEX `IDX_idbrans` (`brands_idbrans` ASC),
-  INDEX `IDX_idcategoria` (`categoria_idcategoria` ASC),
-  
-  CONSTRAINT `brands_idbrans` FOREIGN KEY (`brands_idbrans`) 
-  REFERENCES `LetsyRopa`.`brands`(`idbrans`)ON DELETE RESTRICT ON UPDATE CASCADE ,
-  
-  CONSTRAINT `categoria_idcategoria` FOREIGN KEY (`categoria_idcategoria`)
-  REFERENCES `LetsyRopa`.`categoria`(`idcategoria`)ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
-#insert usuario
-INSERT INTO `LetsyRopa`.`usuario`( `nombre`,`fechaNacimiento`,`nombreUser`,`passUser`) 
-VALUES('Anthony','1997-05/03','Eduardo123','123');
-INSERT INTO `LetsyRopa`.`usuario`( `nombre`,`fechaNacimiento`,`nombreUser`,`passUser`) 
-VALUES('frank','1992-05/05','frank','123');
-
-#insert categoria
-INSERT INTO `letsyropa`.`categoria`(`name`) VALUES('jeans');
-INSERT INTO `letsyropa`.`categoria`(`name`) VALUES('pantalon');
-INSERT INTO `letsyropa`.`categoria`(`name`) VALUES('Unisex');
-
-
-#insert marca
-INSERT INTO `letsyropa`.`brands`(`name`) VALUES('Parada 101');
-INSERT INTO `letsyropa`.`brands`(`name`) VALUES('Let`Styles');
-INSERT INTO `letsyropa`.`brands`(`name`) VALUES('Jean`s90');
-
-
-#INSERT PRODUCTO
- INSERT INTO `letsyropa`.`productos`(`nameproduct`,`imagen`,`precio`,`brands_idbrans`,`categoria_idcategoria`,`description`)
- VALUES('jeans de invierno','pantalon1.jpg','35.99','1','1','pantalon Jeans de buena calidad');
- INSERT INTO `letsyropa`.`productos`(`nameproduct`,`imagen`,`precio`,`brands_idbrans`,`categoria_idcategoria`,`description`)
- VALUES('jeans de invierno azul','pantalon2.jpg','30.89','1','1','Jeans calentador de invierno en oferta');
- INSERT INTO `letsyropa`.`productos`(`nameproduct`,`imagen`,`precio`,`brands_idbrans`,`categoria_idcategoria`,`description`)
- VALUES('jeans de invierno femenino','pantalon3.jpg','40.99','1','1','Pantalon jeans con acabados modernos');
- INSERT INTO `letsyropa`.`productos`(`nameproduct`,`imagen`,`precio`,`brands_idbrans`,`categoria_idcategoria`,`description`)
- VALUES('jeans de invierno masculino','pantalon4.jpg','43.59','1','1','Jenas de buena calidad en oferta');
+ #foreing key
+ Habitacion_numeroHabitacion tinyint not null,
+ FOREIGN KEY (Habitacion_numeroHabitacion) REFERENCES `Habitacion`(numeroHabitacion) ON DELETE NO ACTION ON UPDATE NO ACTION,
  
- INSERT INTO `letsyropa`.`productos`(`nameproduct`,`imagen`,`precio`,`brands_idbrans`,`categoria_idcategoria`,`description`)
- VALUES('Pantalon jeans temporada invierno','pantalon3.jpg','40.99','2','2','Pantalon Jenas termino');
- INSERT INTO `letsyropa`.`productos`(`nameproduct`,`imagen`,`precio`,`brands_idbrans`,`categoria_idcategoria`,`description`)
- VALUES('Pantalon jeans en oferta','pantalon4.jpg','35.99','2','2','Pantalon Jenas estilo 2020');
- INSERT INTO `letsyropa`.`productos`(`nameproduct`,`imagen`,`precio`,`brands_idbrans`,`categoria_idcategoria`,`description`)
- VALUES('Pantalon jeans Femenino','pantalon5.jpg','30.99','2','2','Pantalon Jenas con finos acabados');
- INSERT INTO `letsyropa`.`productos`(`nameproduct`,`imagen`,`precio`,`brands_idbrans`,`categoria_idcategoria`,`description`)
- VALUES('Pantalon jeans temporada invierno/y otoño','pantalon6.jpg','37.99','2','2','Pantalon Jenas para otoño');
- 
- INSERT INTO `letsyropa`.`productos`(`nameproduct`,`imagen`,`precio`,`brands_idbrans`,`categoria_idcategoria`,`description`)
- VALUES('Pantalon Unisex Invierno,Verano','pantalon3.jpg','30.99','3','3','Pantalon para inviernos');
- 
+ #foreing key
+ cliente_idclienteDNI int not null,
+ FOREIGN KEY (cliente_idclienteDNI) REFERENCES `cliente`(idclienteDNI) ON DELETE NO ACTION ON UPDATE NO ACTION,
+
+ unique key `idreservacion`(idreservacion),
+ primary key (idreservacion)
+)ENGINE=InnoDB default charset=utf8mb4 collate=utf8mb4_0900_ai_ci;
+
+
+#TABLE CLIENTE
+create table cliente(
+idclienteDNI int not null,
+nombre varchar(40) not null,
+apellido varchar(40) not null,
+celular char(9) not null,
+email varchar(100) not null,
+direccion varchar(100) not null,
+recado varchar(150) not null,
+
+unique key `idclienteDNI`(idclienteDNI),
+ primary key (idclienteDNI)
+)ENGINE=InnoDB default charset=utf8mb4 collate=utf8mb4_0900_ai_ci;
+
+
+#SELECT
+SELECT * FROM Tipohabitacion;
+SELECT * FROM Habitacion;
+SELECT * FROM reservacion;
+SELECT * FROM cliente;
+
+#INSERT
+INSERT INTO Tipohabitacion(tipocama,categoria,imagenPrincipal,imagen1,imagen2,imagen3)
+VALUES('Cama una Plaza y 1/2','Habitacion Personal','personal.jpg','personal1.jpg','personal2.jpg','personal3.jpg');
+INSERT INTO Tipohabitacion(tipocama,categoria,imagenPrincipal,imagen1,imagen2,imagen3)
+VALUES('Cama dos Plaza queen','Habitacion Matrimonial','matrimonial.jpg','matrimonial1.jpg','matrimonial2.jpg','matrimonial3.jpg');
+INSERT INTO Tipohabitacion(tipocama,categoria,imagenPrincipal,imagen1,imagen2,imagen3)
+VALUES('2 Cama de una dos plazas','Habitacion Familiar','familiar.jpg','familiar1.jpg','familiar2.jpg','familiar3.jpg');
+
+INSERT INTO Habitacion(costodia,area,numPersonas,Tipohabitacion_idtipohabitacion)
+VALUES('40.00','5 mt*2','1','1');
+INSERT INTO Habitacion(costodia,area,numPersonas,Tipohabitacion_idtipohabitacion)
+VALUES('75.00','10 mt*2','2','2');
+INSERT INTO Habitacion(costodia,area,numPersonas,Tipohabitacion_idtipohabitacion)
+VALUES('90.00','5 mt*2','4','3');
+
+INSERT INTO cliente(idclienteDNI,nombre,apellido,celular,email,direccion,recado) 
+            VALUES('123456','edu','nuñez','123456789','edu@gmail.com','collique 3 zn','habitar');
+INSERT INTO reservacion(FechaEntrada,FechaSalida,Habitacion_numeroHabitacion,cliente_idclienteDNI) 
+            VALUES('2020-10-09','2020-10-10','1','123456');
+            
+            
+#INNER JOIN
+#Habitacion Personal
+SELECT th.imagenPrincipal,th.categoria,th.tipocama,th.idtipohabitacion,
+	   hb.numPersonas,hb.area
+                    FROM Habitacion hb
+                    INNER JOIN Tipohabitacion th
+                    on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
+                    WHERE th.idtipohabitacion = '1';
+				
+#Habitacion Matrimonial
+SELECT th.imagenPrincipal,th.categoria,th.tipocama,th.idtipohabitacion,
+	   hb.numPersonas,hb.area
+                    FROM Habitacion hb
+                    INNER JOIN Tipohabitacion th
+                    on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
+                    WHERE th.idtipohabitacion = '2';
+                    
+#Habitacion Familiar
+SELECT th.imagenPrincipal,th.categoria,th.tipocama,th.idtipohabitacion,
+	   hb.numPersonas,hb.area
+                    FROM Habitacion hb
+                    INNER JOIN Tipohabitacion th
+                    on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
+                    WHERE th.idtipohabitacion = '3';
+                    
+                    
+#VER HABITACION Y TIPO HABITACION
+SELECT th.imagenPrincipal,th.imagen1,th.imagen2,th.imagen3,th.categoria,
+	   hb.numPersonas,hb.area,hb.costodia,hb.Tipohabitacion_idtipohabitacion
+                    FROM Habitacion hb
+                    INNER JOIN Tipohabitacion th
+                    on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
+                    WHERE th.idtipohabitacion = '1';
+                    
+#FER CLIENTE Y RESERVACION
+SELECT c.idclienteDNI,c.nombre,c.email,
+       r.FechaEntrada,r.FechaSalida
+       FROM cliente c
+       INNER JOIN reservacion r
+       on c.idclienteDNI = r.cliente_idclienteDNI
+       WHERE c.idclienteDNI = '12346';
 ```
 ## Imagenes
 - 1
