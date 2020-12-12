@@ -11,7 +11,7 @@ $a = $habitacionC->RegisterReservacion();
 <section class="Correo py-4 text-center parrallax">
     <div class="container">
         <div class="text-center mt-3">
-            <h2><?php echo $data->categoria; ?></h2>
+            <h2 class="ocultar" id="precio-habitacion"><?php echo $data->categoria; ?></h2>
         </div>
     </div>
 </section>
@@ -19,7 +19,6 @@ $a = $habitacionC->RegisterReservacion();
 
 <main class="my-5">
     <div class="container">
-
         <div class="Reservacion mb-4">
             <form action="" method="POST">
                 <div class="row">
@@ -93,7 +92,7 @@ $a = $habitacionC->RegisterReservacion();
 
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 mb-3">
                 <div class="box-img">
                     <img src="recursos/img/matrimonial.jpg" alt="" class="img-fluid">
                 </div>

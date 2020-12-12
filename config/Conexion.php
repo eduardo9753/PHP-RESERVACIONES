@@ -15,7 +15,7 @@ class ClassConexion {
      'host' => 'localhost',
      'database' => 'hotel',
      'port' => '3306',
-     'username' => '',
+     'username' => 'root',
      'password' => '',
      'charset' => 'utf8mb4'
     ];

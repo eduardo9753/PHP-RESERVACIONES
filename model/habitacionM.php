@@ -64,11 +64,11 @@ class HabitacionModel
     {
         try {
             $sql = "SELECT th.imagenPrincipal,th.categoria,th.tipocama,th.idtipohabitacion,
-                             hb.numPersonas,hb.area
-                           FROM Habitacion hb
-                           INNER JOIN Tipohabitacion th
-                           on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
-                           WHERE th.idtipohabitacion = '3'";
+                            hb.numPersonas,hb.area
+                          FROM Habitacion hb
+                          INNER JOIN Tipohabitacion th
+                          on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
+                          WHERE th.idtipohabitacion = '3'";
             $stm = $this->pdo->ConectarBD()->prepare($sql);
             $stm->execute();
             return $stm->fetch(PDO::FETCH_OBJ);

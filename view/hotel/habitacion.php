@@ -1,6 +1,5 @@
 <?php
 include_once('./view/templates/menu.php');
-
 $habitacionC = new HabitacionControl();
 $data = $habitacionC->GetHabitacioId();
 //var_dump($data);
@@ -9,7 +8,7 @@ $data = $habitacionC->GetHabitacioId();
 <section class="Correo py-4 text-center parrallax">
     <div class="container">
         <div class="text-center mt-3">
-            <h2><?php echo $data->categoria; ?></h2>
+            <h2 class="ocultar" id="precio-habitacion"><?php echo $data->categoria; ?></h2>
         </div>
     </div>
 </section>
@@ -19,7 +18,7 @@ $data = $habitacionC->GetHabitacioId();
     <div class="container">
         <div class="row">
             <div class="col-md-8 mb-3">
-                <div class="box-img">
+                <div class="box-img ocultar" id="mostra-habitacion-img">
                     <img src="recursos/img/<?php echo $data->imagenPrincipal; ?>" alt="" class="img-fluid">
                 </div>
             </div>
@@ -28,7 +27,7 @@ $data = $habitacionC->GetHabitacioId();
             <div class="Formulario col-md-4 pb-3">
                 <div>
                     <div>
-                        <p class="text-center lead pt-5 precio-noche">Precio por Noche</p>
+                        <p class="text-center lead pt-5 precio-noche ocultar" id="precio-habitacion">Precio por Noche</p>
                         <p class="precio text-center p-3"><?php echo $data->costodia; ?></p>
                     </div>
 
@@ -52,7 +51,6 @@ $data = $habitacionC->GetHabitacioId();
 
 
     <div class="container">
-
         <div>
             <h4 class="text-center text-uppercase my-5">interiores de la habitacion</h4>
         </div>

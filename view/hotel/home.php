@@ -5,11 +5,7 @@ $habitacionC = new HabitacionControl();
 $personal = $habitacionC->GetPersonal();
 $matri = $habitacionC->GetMatrimonial();
 $fami = $habitacionC->GetFamiliar();
-
 ?>
-
-
-
 
 <section class="galeryhabitacion">
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
@@ -43,11 +39,10 @@ $fami = $habitacionC->GetFamiliar();
 
 
 <main>
-
-    <section class="Empresa my-5">
+    <section class="Empresa my-5" id="empresa">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 pf-empresa">
                     <div class="descript-empresa text-center">
                         <h1 class="lead">El Hotel de 3 Estrellas</h1>
                         <p class="py-5 lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. In corporis
@@ -72,12 +67,13 @@ $fami = $habitacionC->GetFamiliar();
         </div>
     </section>
 
-    <section class="Servicios">
+    <section class="Servicios" id="servicios">
         <div class="container">
             <div class="py-5">
                 <h2 class="title-servi">Nuestro Servicios Internos</h2>
             </div>
 
+        <div class="ocultar ver-img-services">
             <div class="row">
                 <div class="col-md-3 servicio">
                     <div class="img-servi">
@@ -120,11 +116,13 @@ $fami = $habitacionC->GetFamiliar();
                 </div>
             </div>
         </div>
+            
+        </div>
     </section>
 
 
 
-    <section class="Habiaciones py-5">
+    <section class="Habiaciones py-5" id="habitaciones">
         <div class="container">
             <div class="my-5">
                 <h2 class="title-habitacion title-white">Nuestras Habitaciones</h2>
@@ -149,6 +147,7 @@ $fami = $habitacionC->GetFamiliar();
                         </div>
                     </div>
                 </div>
+
 
                 <div class="col-md-4 habitacion mb-4">
                     <div>

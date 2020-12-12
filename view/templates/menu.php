@@ -15,13 +15,13 @@
                         <a class="nav-link" href="index.php?ruta=home">Bienvenida</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">¿Quienes somos?</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#ubicanos">Ubicanos</a>
+                        <a class="nav-link" href="#empresa">¿Quienes somos?</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#servicios">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#habitaciones">Habiaciones</a>
                     </li>
             </div>
         </div>
