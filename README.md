@@ -24,6 +24,8 @@ Vitas:
 - 4
 ![4](https://user-images.githubusercontent.com/68178186/101994911-28119780-3c94-11eb-92b3-76592e221d54.PNG)
 - 5
+![6](https://user-images.githubusercontent.com/68178186/101995056-301e0700-3c95-11eb-8358-6e5c87e64526.PNG)
+- 5
 ![5](https://user-images.githubusercontent.com/68178186/101994914-2b0c8800-3c94-11eb-9a49-43c39722531d.PNG)
 
 
@@ -221,3 +223,4 @@ SELECT c.idclienteDNI,c.nombre,c.email,
        on c.idclienteDNI = r.cliente_idclienteDNI
        WHERE c.idclienteDNI = '12346';
 
+```
