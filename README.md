@@ -30,7 +30,7 @@ Vitas:
 
 
 ### SCRIPT DE LA BASE DE DATOS
-```
+```sql
 CREATE DATABASE hotel DEFAULT CHARACTER SET utf8;
 SET default_storage_engine = INNODB;
 
