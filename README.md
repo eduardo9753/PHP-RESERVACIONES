@@ -1,4 +1,4 @@
-# Reserva de Habitaciones
+# Reservaciónes
 Desarrollo de una Pagina Web de Reservaciones 
 
 ------------
