@@ -1,11 +1,6 @@
-<?php
-include_once('./view/templates/menu.php');
+<?php include_once('view/templates/header.php'); ?>
 
-$habitacionC = new HabitacionControl();
-$personal = $habitacionC->GetPersonal();
-$matri = $habitacionC->GetMatrimonial();
-$fami = $habitacionC->GetFamiliar();
-?>
+<?php include_once('view/templates/menu.php'); ?>
 
 <section class="galeryhabitacion">
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
@@ -73,50 +68,50 @@ $fami = $habitacionC->GetFamiliar();
                 <h2 class="title-servi">Nuestro Servicios Internos</h2>
             </div>
 
-        <div class="ocultar ver-img-services">
-            <div class="row">
-                <div class="col-md-3 servicio">
-                    <div class="img-servi">
-                        <img src="recursos/img/serviCafeteria.jpg" alt="">
+            <div class="ocultar ver-img-services">
+                <div class="row">
+                    <div class="col-md-3 servicio">
+                        <div class="img-servi">
+                            <img src="recursos/img/serviCafeteria.jpg" alt="">
+                        </div>
+
+                        <div class="img-descript">
+                            <p class="lead">Cafeteri</p>
+                        </div>
                     </div>
 
-                    <div class="img-descript">
-                        <p class="lead">Cafeteri</p>
-                    </div>
-                </div>
+                    <div class="col-md-3 servicio">
+                        <div class="img-servi">
+                            <img src="recursos/img/serviTelefono.jpg" alt="">
+                        </div>
 
-                <div class="col-md-3 servicio">
-                    <div class="img-servi">
-                        <img src="recursos/img/serviTelefono.jpg" alt="">
-                    </div>
-
-                    <div class="img-descript">
-                        <p class="lead">Telefono de habitacion</p>
-                    </div>
-                </div>
-
-                <div class="col-md-3 servicio">
-                    <div class="img-servi">
-                        <img src="recursos/img/seviLavanderia.jpg" alt="">
+                        <div class="img-descript">
+                            <p class="lead">Telefono de habitacion</p>
+                        </div>
                     </div>
 
-                    <div class="img-descript">
-                        <p class="lead">Lavanderia</p>
-                    </div>
-                </div>
+                    <div class="col-md-3 servicio">
+                        <div class="img-servi">
+                            <img src="recursos/img/seviLavanderia.jpg" alt="">
+                        </div>
 
-                <div class="col-md-3 servicio">
-                    <div class="img-servi">
-                        <img src="recursos/img/seviWifi.jpg" alt="">
+                        <div class="img-descript">
+                            <p class="lead">Lavanderia</p>
+                        </div>
                     </div>
 
-                    <div class="img-descript">
-                        <p class="lead">Internet Gratis</p>
+                    <div class="col-md-3 servicio">
+                        <div class="img-servi">
+                            <img src="recursos/img/seviWifi.jpg" alt="">
+                        </div>
+
+                        <div class="img-descript">
+                            <p class="lead">Internet Gratis</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-            
+
         </div>
     </section>
 
@@ -129,63 +124,28 @@ $fami = $habitacionC->GetFamiliar();
             </div>
 
             <div class="row">
-                <div class="col-md-4 habitacion mb-4">
-                    <div>
+                <?php foreach ($this->MODEL->allHabitaciones() as $new) :  ?>
+                    <div class="col-md-4 habitacion mb-4">
                         <div>
-                            <img src="recursos/img/<?php echo $personal->imagenPrincipal; ?>" alt="">
-                        </div>
+                            <div>
+                                <a href="?ruta=habitacionById&id=<?php echo $new->idtipohabitacion; ?>" class="">
+                                    <img src="recursos/img/<?php echo $new->imagenPrincipal; ?>" alt="">
+                                </a>
+                            </div>
 
-                        <div class="descript-habitacion p-3">
-                            <h3 class="py-2 text-center"><?php echo $personal->categoria; ?></h3>
-                            <ul class="lead">
-                                <li><span>></span>Cama: <?php echo $personal->tipocama; ?> </li>
-                                <li><span>></span>Personas: <?php echo $personal->numPersonas; ?> </li>
-                                <li><span>></span>Area: <?php echo $personal->area; ?></li>
-                            </ul>
+                            <div class="descript-habitacion p-3">
+                                <h3 class="py-2 text-center"><?php echo $new->categoria; ?></h3>
+                                <ul class="lead">
+                                    <li><span>></span>Cama: <?php echo $new->tipocama; ?> </li>
+                                    <li><span>></span>Personas: <?php echo $new->numPersonas; ?> </li>
+                                    <li><span>></span>Area: <?php echo $new->area; ?></li>
+                                </ul>
 
-                            <a href="index.php?ruta=habitacion&id=<?php echo $personal->idtipohabitacion; ?>" class="My-btn">Saber Mas ...</a>
+                                <a href="?ruta=habitacionById&id=<?php echo $new->idtipohabitacion; ?>" class="My-btn">Saber Mas ...</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-
-                <div class="col-md-4 habitacion mb-4">
-                    <div>
-                        <div>
-                            <img src="recursos/img/<?php echo $matri->imagenPrincipal; ?>" alt="">
-                        </div>
-
-                        <div class="descript-habitacion p-3">
-                            <h3 class="py-2 text-center"><?php echo $matri->categoria; ?></h3>
-                            <ul class="lead">
-                                <li><span>></span>Cama: <?php echo $matri->tipocama; ?> </li>
-                                <li><span>></span>Personas: <?php echo $matri->numPersonas; ?> </li>
-                                <li><span>></span>Area: <?php echo $matri->area; ?></li>
-                            </ul>
-
-                            <a href="index.php?ruta=habitacion&id=<?php echo $matri->idtipohabitacion; ?>" class="My-btn">Saber Mas ...</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 habitacion mb-4">
-                    <div>
-                        <div>
-                            <img src="recursos/img/<?php echo $fami->imagenPrincipal; ?>" alt="">
-                        </div>
-
-                        <div class="descript-habitacion p-3">
-                            <h3 class="py-2 text-center"><?php echo $fami->categoria; ?></h3>
-                            <ul class="lead">
-                                <li><span>></span>Cama: <?php echo $fami->tipocama; ?> </li>
-                                <li><span>></span>Personas: <?php echo $fami->numPersonas; ?> </li>
-                                <li><span>></span>Area: <?php echo $fami->area; ?></li>
-                            </ul>
-
-                            <a href="index.php?ruta=habitacion&id=<?php echo $fami->idtipohabitacion; ?>" class="My-btn">Saber Mas ...</a>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
@@ -252,3 +212,5 @@ $fami = $habitacionC->GetFamiliar();
         </div>
     </section>
 </main>
+
+<?php include_once('view/templates/footer.php'); ?>

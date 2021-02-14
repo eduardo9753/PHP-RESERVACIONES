@@ -1,12 +1,6 @@
-<?php
-include_once('./view/templates/menu.php');
+<?php include_once('view/templates/header.php');?>
 
-$habitacionC = new HabitacionControl();
-$data = $habitacionC->ViewHabitacionInfo();
-$a = $habitacionC->RegisterReservacion();
-//var_dump($a);
-//var_dump($data);
-?>
+<?php include_once('view/templates/menu.php'); ?>
 
 <section class="Correo py-4 text-center parrallax">
     <div class="container">
@@ -20,7 +14,7 @@ $a = $habitacionC->RegisterReservacion();
 <main class="my-5">
     <div class="container">
         <div class="Reservacion mb-4">
-            <form action="" method="POST">
+            <form action="?ruta=RegisterReservacion" method="POST">
                 <div class="row">
                     <div class="Formulario col-md-6 pb-4">
                         <div>
@@ -78,23 +72,16 @@ $a = $habitacionC->RegisterReservacion();
                             <label for="" class="my-3"></label>
                             <input type="text" value="<?php echo $data->Tipohabitacion_idtipohabitacion; ?>" class="form-control" name="txtidhabitacionforanea" hidden>
                         </div>
-
-                        <div>
-                            <label for="" class="my-3"></label>
-                            <input type="text" value="<?php; ?>" class="form-control" name="txtidclienteforanea" hidden>
-                        </div>
                     </div>
                 </div>
 
             </form>
         </div>
 
-
-
         <div class="row">
             <div class="col-md-8 mb-3">
                 <div class="box-img">
-                    <img src="recursos/img/matrimonial.jpg" alt="" class="img-fluid">
+                    <img src="recursos/img/<?php echo $data->imagenPrincipal; ?>" alt="" class="img-fluid">
                 </div>
             </div>
 
@@ -118,3 +105,5 @@ $a = $habitacionC->RegisterReservacion();
         </div>
     </div>
 </main>
+
+<?php include_once('view/templates/footer.php'); ?>

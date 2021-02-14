@@ -21,7 +21,7 @@
                         <a class="nav-link" href="#servicios">Servicios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#habitaciones">Habiaciones</a>
+                        <a class="nav-link" href="#habitaciones">Habitaciones</a>
                     </li>
             </div>
         </div>

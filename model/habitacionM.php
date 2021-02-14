@@ -1,6 +1,8 @@
 <?php
 
 include_once('./config/Conexion.php');
+
+//OPCIONAL YA QUE TU CONTROLLADOR TIENE A LOS DATOS
 include_once('./datos/Habitacion.php');
 include_once('./datos/Cliente.php');
 include_once('./datos/Reserva.php');
@@ -21,65 +23,27 @@ class HabitacionModel
     }
 
     //traemos habitacion personal
-    public function getPersonal()
+    public function allHabitaciones()
     {
         try {
-            $sql = "SELECT th.imagenPrincipal,th.categoria,th.tipocama,th.idtipohabitacion,
-                            hb.numPersonas,hb.area
-                          FROM Habitacion hb
-                          INNER JOIN Tipohabitacion th
-                          on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
-                          WHERE th.idtipohabitacion = '1'";
+            $sql = "SELECT hb.numeroHabitacion , th.imagenPrincipal , th.categoria , th.tipocama ,
+                           th.idtipohabitacion , hb.numPersonas,hb.area
+                               FROM Habitacion hb
+                               INNER JOIN Tipohabitacion th
+                               on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
+                               WHERE th.idtipohabitacion";
             $stm = $this->pdo->ConectarBD()->prepare($sql);
             $stm->execute();
-            return $stm->fetch(PDO::FETCH_OBJ);
+            return $stm->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $e) {
             echo "Error tpersonal" . $e->getMessage();
         }
     }
 
 
-    //traemos habitacion Matrimonial
-    public function getMatrimonial()
+    //traemos haitacion por id
+    public function getHabitacionID(Habitacion $habitacion)
     {
-        try {
-            $sql = "SELECT th.imagenPrincipal,th.categoria,th.tipocama,th.idtipohabitacion,
-                            hb.numPersonas,hb.area
-                          FROM Habitacion hb
-                          INNER JOIN Tipohabitacion th
-                          on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
-                          WHERE th.idtipohabitacion = '2'";
-            $stm = $this->pdo->ConectarBD()->prepare($sql);
-            $stm->execute();
-            return $stm->fetch(PDO::FETCH_OBJ);
-        } catch (Exception $e) {
-            echo "Error matri" . $e->getMessage();
-        }
-    }
-
-
-
-    //traemos habitacion Familiar
-    public function getFamiliar()
-    {
-        try {
-            $sql = "SELECT th.imagenPrincipal,th.categoria,th.tipocama,th.idtipohabitacion,
-                            hb.numPersonas,hb.area
-                          FROM Habitacion hb
-                          INNER JOIN Tipohabitacion th
-                          on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
-                          WHERE th.idtipohabitacion = '3'";
-            $stm = $this->pdo->ConectarBD()->prepare($sql);
-            $stm->execute();
-            return $stm->fetch(PDO::FETCH_OBJ);
-        } catch (Exception $e) {
-            echo "Error familiar" . $e->getMessage();
-        }
-    }
-
-
-    //traemosw haitacion por id
-    public function getHabitacionID(Habitacion $habitacion){
         try {
             $sql = "SELECT th.imagenPrincipal,th.imagen1,th.imagen2,th.imagen3,th.categoria,
             hb.numPersonas,hb.area,hb.costodia,hb.Tipohabitacion_idtipohabitacion
@@ -87,62 +51,65 @@ class HabitacionModel
                          INNER JOIN Tipohabitacion th
                          on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
                          WHERE th.idtipohabitacion = ?";
-             $stm = $this->pdo->ConectarBD()->prepare($sql);
-             $stm->execute(array($habitacion->GetIdhabitacion()));
-             return $stm->fetch(PDO::FETCH_OBJ);
+            $stm = $this->pdo->ConectarBD()->prepare($sql);
+            $stm->execute(array($habitacion->GetIdhabitacion()));
+            return $stm->fetch(PDO::FETCH_OBJ);
         } catch (Exception $e) {
             echo "Error habitacion" . $e->getMessage();
         }
     }
 
-    
+
 
     //Registro de clientes
-    public function registrarCliente(Cliente $cliente){
+    public function registrarCliente(Cliente $cliente)
+    {
         try {
             $sql = "INSERT INTO cliente(idclienteDNI,nombre,apellido,celular,email,direccion,recado) 
             VALUES(?,?,?,?,?,?,?)";
             $stm = $this->pdo->ConectarBD()->prepare($sql)->execute(
-            array(
-               $cliente->Getdni(),
-               $cliente->Getnombre(),
-               $cliente->Getapellido(),
-               $cliente->Getcelular(),
-               $cliente->Getemail(),
-               $cliente->Getdireccion(),
-               $cliente->Getrecado()
-           )
-       );
-       return $stm;
-        }catch(Exception $e){
-            echo "Error de cliente".$e->getMessage();
+                array(
+                    $cliente->Getdni(),
+                    $cliente->Getnombre(),
+                    $cliente->Getapellido(),
+                    $cliente->Getcelular(),
+                    $cliente->Getemail(),
+                    $cliente->Getdireccion(),
+                    $cliente->Getrecado()
+                )
+            );
+            return $stm;
+        } catch (Exception $e) {
+            echo "Error de cliente" . $e->getMessage();
         }
     }
 
 
     //Registro de Reservacion
-    public function registrarReserva(Reserva $reserva){
+    public function registrarReserva(Reserva $reserva)
+    {
         try {
             $sql = "INSERT INTO reservacion(FechaEntrada,FechaSalida,Habitacion_numeroHabitacion,cliente_idclienteDNI) 
             VALUES(?,?,?,?)";
             $stm = $this->pdo->ConectarBD()->prepare($sql)->execute(
-            array(
-               $reserva->getfechaEntrada(),
-               $reserva->getfechaSalida(),
-               $reserva->getnumeroHabitacion(),
-               $reserva->getidcliente()
-           )
-       );
-       return $stm;
-        }catch(Exception $e){
-            echo "Error de cliente".$e->getMessage();
+                array(
+                    $reserva->getfechaEntrada(),
+                    $reserva->getfechaSalida(),
+                    $reserva->getnumeroHabitacion(),
+                    $reserva->getidcliente()
+                )
+            );
+            return $stm;
+        } catch (Exception $e) {
+            echo "Error de cliente" . $e->getMessage();
         }
     }
 
 
 
-     //Detalle Reserva 
-     public function detalleReserva(Cliente $dni){
+    //Detalle Reserva 
+    public function detalleReserva(Cliente $dni)
+    {
         try {
             $sql = "SELECT c.idclienteDNI,c.nombre,c.email,
                            r.FechaEntrada,r.FechaSalida
@@ -150,12 +117,11 @@ class HabitacionModel
                            INNER JOIN reservacion r
                            on c.idclienteDNI = r.cliente_idclienteDNI
                            WHERE c.idclienteDNI = ?";
-             $stm = $this->pdo->ConectarBD()->prepare($sql);
-             $stm->execute(array($dni->Getdni()));
-             return $stm->fetch(PDO::FETCH_OBJ);
+            $stm = $this->pdo->ConectarBD()->prepare($sql);
+            $stm->execute(array($dni->Getdni()));
+            return $stm->fetch(PDO::FETCH_OBJ);
         } catch (Exception $e) {
             echo "Error habitacion" . $e->getMessage();
         }
     }
-
 }

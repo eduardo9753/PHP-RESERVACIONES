@@ -1,9 +1,7 @@
-<?php
-include_once('./view/templates/menu.php');
-$habitacionC = new HabitacionControl();
-$a = $habitacionC->DetalleReserva();
-var_dump($a);
-?>
+<?php include_once('view/templates/header.php');?>
+
+<?php include_once('view/templates/menu.php'); ?>
+
 <section class="Correo py-4 text-center parrallax">
     <div class="container">
         <div class="text-center my-4">
@@ -28,3 +26,5 @@ var_dump($a);
         </div>
     </div>
 </main>
+
+<?php include_once('view/templates/footer.php'); ?>

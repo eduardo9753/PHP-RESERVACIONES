@@ -1,10 +1,13 @@
 <?php
-include_once('controller/ControlRuta.php');
-include_once('controller/habitacionC.php');
 
-include_once('model/ModeloRuta.php');
-include_once('model/habitacionM.php');
+include_once('controller/controllerHabitacion.php');
 
 
-$ruta = new CRuta();
-$ruta->PlantillaControl();
+$controller = new HabitacionControl();
+
+if(!isset($_REQUEST['ruta'])){
+    $controller->home();
+} else {
+    $peticion = $_REQUEST['ruta'];
+    call_user_func(array($controller , $peticion));
+}

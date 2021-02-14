@@ -1,9 +1,6 @@
-<?php
-include_once('./view/templates/menu.php');
-$habitacionC = new HabitacionControl();
-$data = $habitacionC->GetHabitacioId();
-//var_dump($data);
-?>
+<?php include_once('view/templates/header.php'); ?>
+
+<?php include_once('view/templates/menu.php'); ?>
 
 <section class="Correo py-4 text-center parrallax">
     <div class="container">
@@ -25,9 +22,9 @@ $data = $habitacionC->GetHabitacioId();
 
 
             <div class="Formulario col-md-4 pb-3">
-                <div>
+                <div class="">
                     <div>
-                        <p class="text-center lead pt-5 precio-noche ocultar" id="precio-habitacion">Precio por Noche</p>
+                        <p class="text-center lead precio-noche ocultar" id="precio-habitacion">Precio por Noche</p>
                         <p class="precio text-center p-3"><?php echo $data->costodia; ?></p>
                     </div>
 
@@ -41,9 +38,8 @@ $data = $habitacionC->GetHabitacioId();
                     </div>
 
                     <div class="text-center">
-                        <a href="index.php?ruta=infohabitacion&idhabi=<?php echo $data->Tipohabitacion_idtipohabitacion; ?>" class="My-btn">Reservar</a>
+                        <a href="?ruta=infohabitacion&id=<?php echo $data->Tipohabitacion_idtipohabitacion; ?>" class="My-btn">Reservar</a>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -136,8 +132,8 @@ $data = $habitacionC->GetHabitacioId();
                     </table>
                 </div>
             </div>
-
-
         </div>
     </div>
 </main>
+
+<?php include_once('view/templates/footer.php'); ?>
