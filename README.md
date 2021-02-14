@@ -1,5 +1,5 @@
 # Reservaciónes
-Desarrollo de una Pagina Web de Reservaciones 
+Desarrollo de una Pagina Web de reservaciónes de habitaciones
 
 ------------
 
