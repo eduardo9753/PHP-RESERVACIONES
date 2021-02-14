@@ -30,7 +30,7 @@ Vitas:
 
 
 ### SCRIPT DE LA BASE DE DATOS
-```sql
+```
 CREATE DATABASE hotel DEFAULT CHARACTER SET utf8;
 SET default_storage_engine = INNODB;
 
@@ -48,6 +48,7 @@ CREATE TABLE Tipohabitacion(
 )ENGINE=InnoDB default charset=utf8mb4;
 
 
+
 #TABLE HABITACION
 CREATE TABLE Habitacion(
   numeroHabitacion tinyint auto_increment PRIMARY KEY,
@@ -56,6 +57,7 @@ CREATE TABLE Habitacion(
   numPersonas tinyint,
   Tipohabitacion_idtipohabitacion tinyint not null#id tipo habitacion
 )ENGINE=InnoDB default charset=utf8mb4;
+
 
 
 #TABLE RESERVACION
@@ -68,6 +70,7 @@ CREATE TABLE reservacion(
 )ENGINE=InnoDB default charset=UTF8MB4;
 
 
+
 #TABLE CLIENTE
 CREATE TABLE cliente(
   idclienteDNI int PRIMARY KEY,
@@ -78,6 +81,9 @@ CREATE TABLE cliente(
   direccion varchar(100) not null,
   recado varchar(150) not null
 )ENGINE=InnoDB default charset=UTF8MB4;
+
+
+
 #----------------------------------------------------------------------
 #LLAVES UNICAS
 #----------------------------------------------------------------------
@@ -146,81 +152,42 @@ SELECT * FROM reservacion;
 SELECT * FROM cliente;
 
 
-
 #----------------------------------------------------------------------
 #INSERT
 #----------------------------------------------------------------------
 INSERT INTO Tipohabitacion(tipocama,categoria,imagenPrincipal,imagen1,imagen2,imagen3)
 VALUES('Cama una Plaza y 1/2','Habitacion Personal','personal.jpg','personal1.jpg','personal2.jpg','personal3.jpg');
+
 INSERT INTO Tipohabitacion(tipocama,categoria,imagenPrincipal,imagen1,imagen2,imagen3)
 VALUES('Cama dos Plaza queen','Habitacion Matrimonial','matrimonial.jpg','matrimonial1.jpg','matrimonial2.jpg','matrimonial3.jpg');
+
 INSERT INTO Tipohabitacion(tipocama,categoria,imagenPrincipal,imagen1,imagen2,imagen3)
 VALUES('2 Cama de una dos plazas','Habitacion Familiar','familiar.jpg','familiar1.jpg','familiar2.jpg','familiar3.jpg');
 
 INSERT INTO Habitacion(costodia,area,numPersonas,Tipohabitacion_idtipohabitacion)
 VALUES('40.00','5 mt*2','1','1');
+
 INSERT INTO Habitacion(costodia,area,numPersonas,Tipohabitacion_idtipohabitacion)
 VALUES('75.00','10 mt*2','2','2');
+
 INSERT INTO Habitacion(costodia,area,numPersonas,Tipohabitacion_idtipohabitacion)
 VALUES('90.00','5 mt*2','4','3');
 
 INSERT INTO cliente(idclienteDNI,nombre,apellido,celular,email,direccion,recado) 
             VALUES('123456','edu','nuñez','123456789','edu@gmail.com','collique 3 zn','habitar');
+            
 INSERT INTO reservacion(FechaEntrada,FechaSalida,Habitacion_numeroHabitacion,cliente_idclienteDNI) 
             VALUES('2020-10-09','2020-10-10','1','123456');
           
           
+          
 #----------------------------------------------------------------------
-#INNER JOIN Habitacion Personal
+#INNER JOIN Habitaciones
 #----------------------------------------------------------------------           
-SELECT th.imagenPrincipal,th.categoria,th.tipocama,th.idtipohabitacion,
-	   hb.numPersonas,hb.area
+SELECT hb.numeroHabitacion , th.imagenPrincipal , th.categoria , th.tipocama ,
+ th.idtipohabitacion , hb.numPersonas,hb.area
                     FROM Habitacion hb
                     INNER JOIN Tipohabitacion th
                     on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
                     WHERE th.idtipohabitacion = '1';
-                    
-                    
-#----------------------------------------------------------------------
-#INNER JOIN Habitacion Matrimonial
-#---------------------------------------------------------------------- 
-SELECT th.imagenPrincipal,th.categoria,th.tipocama,th.idtipohabitacion,
-	   hb.numPersonas,hb.area
-                    FROM Habitacion hb
-                    INNER JOIN Tipohabitacion th
-                    on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
-                    WHERE th.idtipohabitacion = '2';
-  
-  
-#----------------------------------------------------------------------
-#INNER JOIN Habitacion amiliar
-#---------------------------------------------------------------------- 
-SELECT th.imagenPrincipal,th.categoria,th.tipocama,th.idtipohabitacion,
-	   hb.numPersonas,hb.area
-                    FROM Habitacion hb
-                    INNER JOIN Tipohabitacion th
-                    on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
-                    WHERE th.idtipohabitacion = '3';
-              
-              
-#----------------------------------------------------------------------
-#INNER JOIN VER HABITACION Y TIPO HABITACION
-#---------------------------------------------------------------------- 			
-SELECT th.imagenPrincipal,th.imagen1,th.imagen2,th.imagen3,th.categoria,
-	   hb.numPersonas,hb.area,hb.costodia,hb.Tipohabitacion_idtipohabitacion
-                    FROM Habitacion hb
-                    INNER JOIN Tipohabitacion th
-                    on hb.Tipohabitacion_idtipohabitacion = th.idtipohabitacion
-                    WHERE th.idtipohabitacion = '1';
-
-#----------------------------------------------------------------------
-#INNER JOIN VER CLIENTE Y RESERVACION
-#----------------------------------------------------------------------                     
-SELECT c.idclienteDNI,c.nombre,c.email,
-       r.FechaEntrada,r.FechaSalida
-       FROM cliente c
-       INNER JOIN reservacion r
-       on c.idclienteDNI = r.cliente_idclienteDNI
-       WHERE c.idclienteDNI = '12346';
-
 ```
