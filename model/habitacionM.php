@@ -40,7 +40,7 @@ class HabitacionModel
     }
 
 
-    //traemos haitacion por id
+    //traemos habitacion por id
     public function getHabitacionID(Habitacion $habitacion)
     {
         try {
