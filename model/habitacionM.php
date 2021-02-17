@@ -2,7 +2,6 @@
 
 include_once('./config/Conexion.php');
 
-//OPCIONAL YA QUE TU CONTROLLADOR TIENE A LOS DATOS
 include_once('./datos/Habitacion.php');
 include_once('./datos/Cliente.php');
 include_once('./datos/Reserva.php');
